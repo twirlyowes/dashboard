@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: theme('colors.ink.950');
+  color: theme('colors.mist.100');
+  font-family: theme('fontFamily.sans');
+}
+
+.mono {
+  font-family: theme('fontFamily.mono');
+}
+
+/* Deliberately minimal: only state-change transitions, nothing decorative. */
+* {
+  transition-property: background-color, border-color, opacity, box-shadow, transform;
+  transition-duration: 120ms;
+  transition-timing-function: ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Skeleton loading shimmer — subtle, used by LoadingSkeleton only */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+.skeleton {
+  animation: skeleton-pulse 1.6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+    opacity: 0.55;
+  }
+}
+
+/* Thin, subtle scrollbar for horizontally-scrolling tables */
+.scroll-thin::-webkit-scrollbar {
+  height: 6px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background-color: theme('colors.ink.600');
+  border-radius: 3px;
+}
